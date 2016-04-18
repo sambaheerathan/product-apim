@@ -299,11 +299,23 @@
             <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/deployment/server/jaggeryapps/workflow-admin/</directory>
             <outputDirectory>wso2am-${pom.version}/repository/deployment/server/jaggeryapps/workflow-admin</outputDirectory>
         </fileSet>
-	<fileSet>
+	    <fileSet>
             <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/deployment/server/jaggeryapps/admin-dashboard/</directory>
             <outputDirectory>wso2am-${pom.version}/repository/deployment/server/jaggeryapps/admin-dashboard</outputDirectory>
         </fileSet>
-	<!--  copying modules xml -->
+        <fileSet>
+            <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/deployment/server/jaggeryapps/portal/</directory>
+            <outputDirectory>wso2am-${pom.version}/repository/deployment/server/jaggeryapps/portal</outputDirectory>
+        </fileSet>
+        <!-- Shindig webapp. Needed for DAS feature/portal> -->
+        <fileSet>
+            <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/deployment/server/webapps</directory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/webapps</outputDirectory>
+            <includes>
+                <include>shindig.war</include>
+            </includes>
+        </fileSet>
+	    <!--  copying modules xml -->
         <fileSet>
             <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/modules</directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/modules/</outputDirectory>
@@ -487,13 +499,24 @@
 
 
         <!-- Copy sample calculator api webapp-->
-        <fileSet>
+        <!--fileSet>
             <directory>
                 ../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/deployment/server/webapps
             </directory>
             <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/webapps</outputDirectory>
             <includes>
                 <include>am#sample#calculator#v1.war</include>
+            </includes>
+        </fileSet-->
+
+        <!-- Copy sample pizzashack api webapp-->
+        <fileSet>
+            <directory>
+                ../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/deployment/server/webapps
+            </directory>
+            <outputDirectory>${pom.artifactId}-${pom.version}/repository/deployment/server/webapps</outputDirectory>
+            <includes>
+                <include>am#sample#pizzashack#v1.war</include>
             </includes>
         </fileSet>
 
@@ -611,6 +634,22 @@
             </includes>
             <fileMode>644</fileMode>
         </fileSet>
+	<fileSet>
+            <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/conf/eventreceivers/</directory>
+            <outputDirectory>wso2am-${pom.version}/repository/deployment/server/eventreceivers</outputDirectory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </fileSet>
+
+	<fileSet>
+            <directory>../../p2-profile/product/target/wso2carbon-core-${carbon.platform.version}/repository/conf/eventstreams/</directory>
+            <outputDirectory>wso2am-${pom.version}/repository/deployment/server/eventstreams</outputDirectory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </fileSet>
+
     </fileSets>
 
     <dependencySets>
@@ -971,6 +1010,11 @@
         <file>
             <source>../../p2-profile/product/target/wso2carbon-core-${carbon.kernel.version}/repository/conf/output-event-adapters.xml</source>
             <outputDirectory>${project.artifactId}-${project.version}/repository/conf/</outputDirectory>
+            <filtered>false</filtered>
+        </file>
+        <file>
+            <source>../../p2-profile/product/target/wso2carbon-core-${carbon.kernel.version}/repository/deployment/server/synapse-configs/default/api/LogAnalyzerRestApi-1.0.xml</source>
+            <outputDirectory>${project.artifactId}-${project.version}/repository/deployment/server/synapse-configs/default/api</outputDirectory>
             <filtered>false</filtered>
         </file>
         <file>
